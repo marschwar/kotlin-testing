@@ -2,18 +2,19 @@ package com.github.marschwar.kotlin.testing
 
 import org.assertj.core.api.Assertions.assertThat
 import org.spekframework.spek2.Spek
+import org.spekframework.spek2.lifecycle.CachingMode
 import org.spekframework.spek2.style.specification.describe
 
 
 internal object RsvpServiceSpek : Spek({
     describe("responding") {
         context("while the guest list is empty") {
-            val subject by memoized { RsvpService() }
+            val subject by memoized(CachingMode.EACH_GROUP) { RsvpService() }
             val name = "Joe"
 
             context("with a positive response") {
 
-                beforeEach { subject.respond(name, true) }
+                before { subject.respond(name, true) }
 
                 it("increases the guest count to one") {
                     assertThat(subject.guestCount).isOne()
@@ -30,7 +31,7 @@ internal object RsvpServiceSpek : Spek({
 
             context("with a negative response") {
 
-                beforeEach { subject.respond(name, false) }
+                before { subject.respond(name, false) }
 
                 it("does not change the guest") {
                     assertThat(subject.guestCount).isZero()

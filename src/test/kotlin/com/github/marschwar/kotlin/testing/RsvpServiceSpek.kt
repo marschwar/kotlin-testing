@@ -5,7 +5,7 @@ import org.spekframework.spek2.Spek
 import org.spekframework.spek2.style.specification.describe
 
 
-internal class RsvpServiceSpek : Spek({
+internal object RsvpServiceSpek : Spek({
     describe("responding") {
         context("while the guest list is empty") {
             val subject by memoized { RsvpService() }

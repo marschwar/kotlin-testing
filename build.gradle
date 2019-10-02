@@ -30,6 +30,8 @@ dependencies {
     testImplementation 'com.winterbe:expekt:0.5+'
 
     testImplementation 'io.mockk:mockk:1.9'
+
+    testImplementation 'io.kotlintest:kotlintest-runner-junit5:3.3+'
 }
 
 // setup the test task

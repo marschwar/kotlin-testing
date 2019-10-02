@@ -1,6 +1,10 @@
 buildscript {
     ext {
-        spek_version = "2.0+"
+        spek_version = '2.0+'
+        mockk_version = '1.9'
+        expect_version = '0.5+'
+        kotlintest_version = '3.3+'
+        assertj_version = '3.12+'
     }
 }
 
@@ -25,13 +29,13 @@ dependencies {
     testImplementation "org.spekframework.spek2:spek-dsl-jvm:$spek_version"
     testRuntimeOnly "org.spekframework.spek2:spek-runner-junit5:$spek_version"
 
-    testImplementation 'org.assertj:assertj-core:3.12+'
+    testImplementation "org.assertj:assertj-core:$assertj_version"
 
-    testImplementation 'com.winterbe:expekt:0.5+'
+    testImplementation "com.winterbe:expekt:$expect_version"
 
-    testImplementation 'io.mockk:mockk:1.9'
+    testImplementation "io.mockk:mockk:$mockk_version"
 
-    testImplementation 'io.kotlintest:kotlintest-runner-junit5:3.3+'
+    testImplementation "io.kotlintest:kotlintest-runner-junit5:$kotlintest_version"
 }
 
 // setup the test task

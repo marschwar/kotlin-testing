@@ -9,7 +9,7 @@ plugins {
 }
 
 repositories {
-    jcenter()
+    mavenCentral()
 }
 
 dependencies {
@@ -29,6 +29,8 @@ dependencies {
     testRuntimeOnly "org.jetbrains.kotlin:kotlin-reflect"
 
     testImplementation 'org.assertj:assertj-core:3.12+'
+
+    testImplementation 'com.winterbe:expekt:0.5+'
 }
 
 // setup the test task

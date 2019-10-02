@@ -19,18 +19,17 @@ dependencies {
     // Use the Kotlin test library.
     testImplementation 'org.jetbrains.kotlin:kotlin-test'
 
-    // Use the Kotlin JUnit integration.
-    testImplementation 'org.jetbrains.kotlin:kotlin-test-junit'
+    // spek requires kotlin-reflect
+    testRuntimeOnly "org.jetbrains.kotlin:kotlin-reflect"
 
     testImplementation "org.spekframework.spek2:spek-dsl-jvm:$spek_version"
     testRuntimeOnly "org.spekframework.spek2:spek-runner-junit5:$spek_version"
 
-    // spek requires kotlin-reflect, can be omitted if already in the classpath
-    testRuntimeOnly "org.jetbrains.kotlin:kotlin-reflect"
-
     testImplementation 'org.assertj:assertj-core:3.12+'
 
     testImplementation 'com.winterbe:expekt:0.5+'
+
+    testImplementation 'io.mockk:mockk:1.9'
 }
 
 // setup the test task

@@ -14,7 +14,7 @@ internal object RsvpServiceSpek : Spek({
 
             context("with a positive response") {
 
-                before { subject.respond(name, true) }
+                beforeGroup { subject.respond(name, true) }
 
                 it("increases the guest count to one") {
                     assertThat(subject.guestCount).isOne()
@@ -31,7 +31,7 @@ internal object RsvpServiceSpek : Spek({
 
             context("with a negative response") {
 
-                before { subject.respond(name, false) }
+                beforeGroup { subject.respond(name, false) }
 
                 it("does not change the guest") {
                     assertThat(subject.guestCount).isZero()
@@ -50,17 +50,17 @@ internal object RsvpServiceSpek : Spek({
         context("while guests have already responded") {
             val namePositive = "Joe"
             val nameNegative = "Mike"
-            val subject by memoized {
+            val subject by memoized(CachingMode.EACH_GROUP) {
                 val subject = RsvpService()
                 subject.respond(namePositive, true)
                 subject.respond(nameNegative, false)
                 subject
             }
+            val previousGuestCount = 1
 
             context("when a positive response is changed to a negative") {
-                val previousGuestCount = subject.guestCount
 
-                beforeEach { subject.respond(namePositive, false) }
+                beforeGroup { subject.respond(namePositive, false) }
 
                 it("decreases the guest count by one") {
                     assertThat(subject.guestCount).isEqualTo(previousGuestCount - 1)
@@ -76,9 +76,8 @@ internal object RsvpServiceSpek : Spek({
             }
 
             context("when a negative response is changed to a positive") {
-                val previousGuestCount = subject.guestCount
 
-                beforeEach { subject.respond(nameNegative, true) }
+                beforeGroup { subject.respond(nameNegative, true) }
 
                 it("increases the guest count by one") {
                     assertThat(subject.guestCount).isEqualTo(previousGuestCount + 1)

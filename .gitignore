@@ -28,3 +28,6 @@ hs_err_pid*
 .gradle
 **/build/
 !gradle/wrapper/gradle-wrapper.jar
+
+# Test reports
+.kotlintest

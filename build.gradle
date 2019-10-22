@@ -45,7 +45,6 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-reflect"
 
     // Use the Kotlin test library.
-    testImplementation('org.jetbrains.kotlin:kotlin-test-annotations-common')
     testImplementation('org.jetbrains.kotlin:kotlin-test-junit5') {
         exclude group: 'org.junit.jupiter'
     }

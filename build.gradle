@@ -50,6 +50,7 @@ dependencies {
     }
 
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.5+'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.5+'
 
     spekImplementation "org.spekframework.spek2:spek-dsl-jvm:$spek_version"
     spekRuntimeOnly "org.spekframework.spek2:spek-runner-junit5:$spek_version"

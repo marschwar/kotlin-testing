@@ -1,5 +1,6 @@
 buildscript {
     ext {
+        kotlin_version = '1.3.50'
         spek_version = '2.0+'
         mockk_version = '1.9'
         expect_version = '0.5+'
@@ -53,12 +54,9 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-reflect"
 
     // Use the Kotlin test library.
-    testImplementation('org.jetbrains.kotlin:kotlin-test-junit5') {
-        exclude group: 'org.junit.jupiter'
-    }
-
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.5+'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.5+'
+    testImplementation "org.jetbrains.kotlin:kotlin-test-junit5:$kotlin_version"
+    // Add the jupiter engine to execute the tests
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.0.0'
 
     spekImplementation "org.spekframework.spek2:spek-dsl-jvm:$spek_version"
     spekRuntimeOnly "org.spekframework.spek2:spek-runner-junit5:$spek_version"

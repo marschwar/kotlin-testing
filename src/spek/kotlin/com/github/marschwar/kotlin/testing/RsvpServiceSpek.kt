@@ -7,10 +7,10 @@ import org.spekframework.spek2.style.specification.describe
 
 
 internal object RsvpServiceSpek : Spek({
-    describe("responding") {
-        context("while the guest list is empty") {
+    describe("Guest is responding") {
+        val name = "Joe"
+        context("without previous responses to this event") {
             val subject by memoized(CachingMode.EACH_GROUP) { RsvpService() }
-            val name = "Joe"
 
             context("with a positive response") {
 
@@ -47,48 +47,54 @@ internal object RsvpServiceSpek : Spek({
             }
         }
 
-        context("while guests have already responded") {
-            val namePositive = "Joe"
-            val nameNegative = "Mike"
+        context("with a previous positive response") {
             val subject by memoized(CachingMode.EACH_GROUP) {
                 val subject = RsvpService()
-                subject.respond(namePositive, true)
-                subject.respond(nameNegative, false)
+                subject.respond(name, true)
                 subject
             }
             val previousGuestCount = 1
 
-            context("when a positive response is changed to a negative") {
+            context("changing to a negative response") {
 
-                beforeGroup { subject.respond(namePositive, false) }
+                beforeGroup { subject.respond(name, false) }
 
                 it("decreases the guest count by one") {
                     assertThat(subject.guestCount).isEqualTo(previousGuestCount - 1)
                 }
 
-                it("marks the person as a responder") {
-                    assertThat(subject.hasResponded(namePositive)).isTrue()
+                it("keeps the person marked a responder") {
+                    assertThat(subject.hasResponded(name)).isTrue()
                 }
 
                 it("marks the person as a non participating guest") {
-                    assertThat(subject.isParticipating(namePositive)).isFalse()
+                    assertThat(subject.isParticipating(name)).isFalse()
                 }
             }
+        }
 
-            context("when a negative response is changed to a positive") {
+        context("with a previous negative response") {
+            val subject by memoized(CachingMode.EACH_GROUP) {
+                val subject = RsvpService()
+                subject.respond(name, false)
+                subject
+            }
+            val previousGuestCount = 0
 
-                beforeGroup { subject.respond(nameNegative, true) }
+            context("changing it to a positive response") {
+
+                beforeGroup { subject.respond(name, true) }
 
                 it("increases the guest count by one") {
                     assertThat(subject.guestCount).isEqualTo(previousGuestCount + 1)
                 }
 
-                it("marks the person as a responder") {
-                    assertThat(subject.hasResponded(namePositive)).isTrue()
+                it("keeps the person marked a responder") {
+                    assertThat(subject.hasResponded(name)).isTrue()
                 }
 
                 it("marks the person as a participating guest") {
-                    assertThat(subject.isParticipating(namePositive)).isTrue()
+                    assertThat(subject.isParticipating(name)).isTrue()
                 }
             }
         }

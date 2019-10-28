@@ -13,5 +13,4 @@ class RsvpService {
     fun hasResponded(name: String): Boolean = guests.containsKey(name)
 
     fun isParticipating(name: String): Boolean = guests[name] ?: false
-
 }

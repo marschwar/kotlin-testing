@@ -33,7 +33,7 @@ internal object RsvpServiceSpek : Spek({
 
                 beforeGroup { subject.respond(name, false) }
 
-                it("does not change the guest") {
+                it("does not change the guest count") {
                     assertThat(subject.guestCount).isZero()
                 }
 

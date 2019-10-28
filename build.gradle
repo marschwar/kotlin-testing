@@ -38,6 +38,7 @@ sourceSets {
 idea {
     module {
         testSourceDirs += project.sourceSets.spek.kotlin.srcDirs
+        inheritOutputDirs true
     }
 }
 
@@ -67,9 +68,7 @@ dependencies {
 
     testImplementation "io.mockk:mockk:$mockk_version"
 
-    // with kotlintest junit runner on the classpath spek ide integration no longer works
-    // testImplementation "io.kotlintest:kotlintest-runner-junit5:$kotlintest_version"
-    testImplementation "io.kotlintest:kotlintest-core:$kotlintest_version"
+    testImplementation "io.kotlintest:kotlintest-runner-junit5:$kotlintest_version"
 }
 
 test {

@@ -1,5 +1,6 @@
-package com.github.marschwar.kotlin.testing
+package com.github.marschwar.kotlin.testing.kotlintest
 
+import com.github.marschwar.kotlin.testing.Calculator
 import io.kotlintest.shouldBe
 import io.kotlintest.specs.FeatureSpec
 

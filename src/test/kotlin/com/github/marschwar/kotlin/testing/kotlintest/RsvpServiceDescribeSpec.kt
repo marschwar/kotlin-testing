@@ -1,5 +1,6 @@
-package com.github.marschwar.kotlin.testing
+package com.github.marschwar.kotlin.testing.kotlintest
 
+import com.github.marschwar.kotlin.testing.RsvpService
 import io.kotlintest.inspectors.forAll
 import io.kotlintest.matchers.string.shouldContain
 import io.kotlintest.matchers.string.shouldStartWith

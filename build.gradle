@@ -70,6 +70,7 @@ dependencies {
     testImplementation "com.winterbe:expekt:$expect_version"
 
     testImplementation "io.mockk:mockk:$mockk_version"
+    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0"
 
     testImplementation "io.kotlintest:kotlintest-runner-junit5:$kotlintest_version"
 }

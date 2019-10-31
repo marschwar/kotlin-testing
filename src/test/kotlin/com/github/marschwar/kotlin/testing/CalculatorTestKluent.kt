@@ -1,10 +1,10 @@
 package com.github.marschwar.kotlin.testing
 
-import com.winterbe.expekt.expect
-import com.winterbe.expekt.should
-import org.junit.jupiter.api.Test
+import org.amshove.kluent.`should equal`
+import org.amshove.kluent.shouldEqual
+import kotlin.test.Test
 
-class CalculatorTestExpekt {
+class CalculatorTestKluent {
 
     private val subject = Calculator()
 
@@ -12,13 +12,13 @@ class CalculatorTestExpekt {
     fun `correctly adds two numbers`() {
         val result = subject.add(1, 2)
 
-        result.should.equal(3)
+        result.shouldEqual(3)
     }
 
     @Test
     fun `correctly adds multiple numbers`() {
         val result = subject.add(1, 2, 3, 4)
 
-        expect(result).to.equal(10)
+        result `should equal` 10
     }
 }

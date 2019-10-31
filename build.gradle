@@ -17,6 +17,7 @@ plugins {
 
 repositories {
     mavenCentral()
+    jcenter()
 }
 
 sourceCompatibility = JavaVersion.VERSION_1_8
@@ -60,14 +61,14 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.0.0'
     testImplementation 'org.junit.jupiter:junit-jupiter-params:5.0.0'
 
-    testCompile "com.winterbe:expekt:0.5.0"
-
     spekImplementation "org.spekframework.spek2:spek-dsl-jvm:$spek_version"
     spekRuntimeOnly "org.spekframework.spek2:spek-runner-junit5:$spek_version"
 
     testImplementation "org.assertj:assertj-core:$assertj_version"
 
-    testImplementation "com.winterbe:expekt:$expect_version"
+    testImplementation('org.amshove.kluent:kluent:1.56') {
+        exclude group: "junit"
+    }
 
     testImplementation "io.mockk:mockk:$mockk_version"
     testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0"

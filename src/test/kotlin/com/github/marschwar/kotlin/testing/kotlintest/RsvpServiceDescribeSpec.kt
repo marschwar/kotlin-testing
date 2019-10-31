@@ -18,7 +18,7 @@ class RsvpServiceDescribeSpec : DescribeSpec({
                 subject.respond(name, true)
                 subject.respond(name2, true)
 
-                it("increases the guest count to one") {
+                it("increases the guest count to two") {
                     subject.guestCount shouldBe 2
                 }
 

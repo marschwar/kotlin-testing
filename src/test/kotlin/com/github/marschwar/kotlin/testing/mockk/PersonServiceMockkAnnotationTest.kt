@@ -1,10 +1,12 @@
-package com.github.marschwar.kotlin.testing
+package com.github.marschwar.kotlin.testing.mockk
 
+import com.github.marschwar.kotlin.testing.PersonDao
+import com.github.marschwar.kotlin.testing.PersonService
 import io.kotlintest.matchers.boolean.shouldBeFalse
 import io.kotlintest.matchers.boolean.shouldBeTrue
 import io.mockk.every
 import io.mockk.impl.annotations.InjectMockKs
-import io.mockk.impl.annotations.MockK
+import io.mockk.impl.annotations.RelaxedMockK
 import io.mockk.junit5.MockKExtension
 import io.mockk.verify
 import io.mockk.verifyAll
@@ -12,12 +14,12 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 
 @ExtendWith(MockKExtension::class)
-internal class PersonServiceMockkTest {
+internal class PersonServiceMockkAnnotationTest {
 
     @InjectMockKs
     lateinit var subject: PersonService
 
-    @MockK(relaxed = true)
+    @RelaxedMockK
     lateinit var dao: PersonDao
 
     @Test

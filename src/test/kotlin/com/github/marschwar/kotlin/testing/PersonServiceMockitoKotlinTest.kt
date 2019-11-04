@@ -1,26 +1,14 @@
 package com.github.marschwar.kotlin.testing
 
-import com.nhaarman.mockitokotlin2.any
-import com.nhaarman.mockitokotlin2.mock
-import com.nhaarman.mockitokotlin2.never
-import com.nhaarman.mockitokotlin2.verify
-import com.nhaarman.mockitokotlin2.whenever
+import com.nhaarman.mockitokotlin2.*
 import io.kotlintest.matchers.boolean.shouldBeFalse
 import io.kotlintest.matchers.boolean.shouldBeTrue
 import org.junit.jupiter.api.Test
-import kotlin.test.BeforeTest
 
-internal class PersonServiceMockitoTest {
+internal class PersonServiceMockitoKotlinTest {
 
-    lateinit var subject: PersonService
-
-    lateinit var dao: PersonDao
-
-    @BeforeTest
-    fun setupMock() {
-        dao = mock()
-        subject = PersonService(dao)
-    }
+    val dao: PersonDao = mock()
+    val subject = PersonService(dao)
 
     @Test
     fun `add person if it does not already exist`() {

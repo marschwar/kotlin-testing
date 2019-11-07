@@ -1,8 +1,11 @@
 package com.github.marschwar.kotlin.testing
 
 import com.nhaarman.mockitokotlin2.*
+import io.kotlintest.Matcher
+import io.kotlintest.MatcherResult
 import io.kotlintest.matchers.boolean.shouldBeFalse
 import io.kotlintest.matchers.boolean.shouldBeTrue
+import io.kotlintest.should
 import org.junit.jupiter.api.Test
 
 internal class PersonServiceMockitoKotlinTest {
@@ -31,8 +34,23 @@ internal class PersonServiceMockitoKotlinTest {
         val result = subject.add(name)
 
         result.shouldBeFalse()
-
         verify(dao).exists(name)
+
         verify(dao, never()).save(name)
     }
+
+    @Test
+    fun `the guest list cannot be empty when a guest as sent a positive response`() {
+        val subject = RsvpService()
+
+        subject.respond("Joe", true)
+
+        subject.hasGuests()
+    }
+
+    private fun haveGuests() = object : Matcher<RsvpService> {
+        override fun test(value: RsvpService) = MatcherResult(value.guestCount > 0, "service should return some guests", "service should not return any guests but returned ${value.guestCount}")
+    }
+
+    private fun RsvpService.hasGuests() = this should haveGuests()
 }
